@@ -50,7 +50,6 @@ if (res === undefined) {
                         e.g. {"player":"rock"}
       node-rpsls rock   Return JSON with results for RPSLS played against a simulated opponent.
                         e.g {"player":"rock","opponent":"Spock","result":"lose"}`);
-
     console.log(`Rules for the Lizard-Spock Espansion of Rock Paper Scissors:
 
     - Scissors CUTS Paper
@@ -63,7 +62,6 @@ if (res === undefined) {
     - Paper DISPROVES Spock
     - Spock VAPORIZES Rock
     - Rock CRUSHES Scissors`);
-    
     process.exit(1);
 } else {
     console.log(JSON.stringify(res));
