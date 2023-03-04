@@ -36,7 +36,7 @@ if (argv.r || argv.rules) {
     process.exit(0);
 }
 
-const res = rps(argv._[0]);
+const res = rpsls(argv._[0]);
 
 if (res === undefined) {
     console.log(`Usage: node-rpsls [SHOT]
