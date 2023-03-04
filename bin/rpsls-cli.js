@@ -42,6 +42,8 @@ if (argv.r || argv.rules) {
 
 const res = rpsls(argv._[0]);
 
+// rpsls.js rpsls() doesn't throw an error and instead prints using console.error() and returns undefined
+// Super bad practice but works here
 if (res === undefined) {
     console.log(`Usage: node-rpsls [SHOT]
     Play the Lizard-Spock Expansion of Rock Paper Scissors (RPSLS)!
