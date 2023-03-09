@@ -40,11 +40,11 @@ if (argv.r || argv.rules) {
     process.exit(0);
 }
 
-const res = rpsls(argv._[0]);
-
-// rpsls.js rpsls() doesn't throw an error and instead prints using console.error() and returns undefined
-// Super bad practice but works here
-if (res === undefined) {
+try {
+  const res = rpsls(argv._[0]);
+  console.log(JSON.stringify(res));
+} catch (error) {
+  if (error instanceof RangeError) {
     console.log(`Usage: node-rpsls [SHOT]
     Play the Lizard-Spock Expansion of Rock Paper Scissors (RPSLS)!
     
@@ -68,7 +68,6 @@ if (res === undefined) {
     - Paper DISPROVES Spock
     - Spock VAPORIZES Rock
     - Rock CRUSHES Scissors`);
-    process.exit(1);
-} else {
-    console.log(JSON.stringify(res));
+    process.exit(1); 
+  }
 }

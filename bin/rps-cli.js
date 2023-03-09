@@ -33,28 +33,27 @@ if (argv.r || argv.rules) {
     process.exit(0);
 }
 
-const res = rps(argv._[0]);
-
-// rpsls.js rps() doesn't throw an error and instead prints using console.error() and returns undefined
-// Super bad practice but works here
-if (res === undefined) {
+try {
+  const res = rps(argv._[0]);
+  console.log(JSON.stringify(res));
+} catch (error) {
+  if (error instanceof RangeError) {
     console.log(`Usage: node-rps [SHOT]
-        Play Rock Paper Scissors (RPS)
-        
-          -h, --help      display this help message and exit
-          -r, --rules     display the rules and exit
-        
-        Examples:
-          node-rps        Return JSON with single player RPS result.
-                          e.g. {"player":"rock"}
-          node-rps rock   Return JSON with results for RPS played against a simulated opponent.
-                          e.g {"player":"rock","opponent":"scissors","result":"win"}`);
+    Play Rock Paper Scissors (RPS)
+    
+      -h, --help      display this help message and exit
+      -r, --rules     display the rules and exit
+    
+    Examples:
+      node-rps        Return JSON with single player RPS result.
+                      e.g. {"player":"rock"}
+      node-rps rock   Return JSON with results for RPS played against a simulated opponent.
+                      e.g {"player":"rock","opponent":"scissors","result":"win"}`);
     console.log(`Rules for Rock Paper Scissors:
 
     - Scissors CUTS Paper
     - Paper COVERS Rock
-    - Rock CRUSHES Scissors`)
+    - Rock CRUSHES Scissors`);
     process.exit(1);
-} else {
-    console.log(JSON.stringify(res));
+  }
 }
